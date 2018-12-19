@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                def doesJavaRock = input(message: 'Should we deploy?', ok: 'Yes', 
+               input(message: 'Should we deploy?', ok: 'Yes', 
                         parameters: [booleanParam(defaultValue: true, 
                         description: 'Choose yes if you want the deployment to happen',name: 'Yes?')])
                 
