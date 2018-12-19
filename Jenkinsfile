@@ -7,7 +7,9 @@ pipeline {
     stages {    
         stage('Pre-Build') {        
         steps {
-                printBaseInfo();
+                 bat script: 'git config --global user.email //"bhattacharyya.soumyak@gmail.com//"'
+		         bat script: 'git config --global user.name //"soumyakbhattacharyya//"'
+                 printBaseInfo();
             }
         
         }    
@@ -46,6 +48,12 @@ pipeline {
 		      }
 		    )
 		  }
+		}
+		stage('tag-vcs'){
+		 steps {
+		     bat script: 'git config --global user.email "bhattacharyya.soumyak@gmail.com'
+		     bat script: 'git config --global user.name "soumyakbhattacharyya"'
+		 }
 		}
     }
     post {
