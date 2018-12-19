@@ -1,3 +1,8 @@
+// pending steps: concept of promoting across environment
+// pending steps: concept of manual approval 
+// pending steps: tagging git repository as it reaches an environment 
+// pending steps: building UI project 
+
 pipeline {
     agent any
 
@@ -25,6 +30,10 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                def doesJavaRock = input(message: 'Should we deploy?', ok: 'Yes', 
+                        parameters: [booleanParam(defaultValue: true, 
+                        description: 'Choose yes if you want the deployment to happen',name: 'Yes?')])
+                
                 echo 'Deploying....'
             }
         }
