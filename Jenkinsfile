@@ -10,8 +10,8 @@ pipeline {
                  printBaseInfo();
                  bat script: 'git config --global user.email "bhattacharyya.soumyak@gmail.com"'
 		         bat script: 'git config --global user.name "soumyakbhattacharyya"'
-		         bat script: 'git tag -f -a ${env.BUILD_TAG} -m $env.BUILD_TAG'
-		         bat script: 'git push --force origin $env.BUILD_TAG'
+		         bat script: 'git tag -f -a %env.BUILD_TAG% -m %env.BUILD_TAG%'
+		         bat script: 'git push --force origin %env.BUILD_TAG%'
               }        
         }    
         stage('Build') {
