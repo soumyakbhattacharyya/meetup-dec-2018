@@ -1,3 +1,6 @@
+// pending steps: tagging git repository as it reaches an environment 
+// pending steps: building UI project 
+
 pipeline {
     agent any
 
@@ -25,9 +28,25 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+               input(message: 'Should we deploy?', ok: 'Yes', 
+                        parameters: [booleanParam(defaultValue: true, 
+                        description: 'Choose yes if you want the deployment to happen',name: 'Yes?')])
+                
                 echo 'Deploying....'
             }
         }
+        stage('run-parallel-branches') {
+		  steps {
+		    parallel(
+		      a: {
+		        echo "run performance test cases"
+		      },
+		      b: {
+		        echo "run acceptance test cases"
+		      }
+		    )
+		  }
+		}
     }
     post {
         always {
