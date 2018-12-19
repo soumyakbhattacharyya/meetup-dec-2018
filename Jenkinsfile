@@ -7,8 +7,8 @@ pipeline {
     stages {    
         stage('Pre-Build') {        
         steps {
-                 bat script: 'git config --global user.email //"bhattacharyya.soumyak@gmail.com//"'
-		         bat script: 'git config --global user.name //"soumyakbhattacharyya//"'
+                 bat script: 'git config --global user.email "bhattacharyya.soumyak@gmail.com"'
+		         bat script: 'git config --global user.name "soumyakbhattacharyya"'
                  printBaseInfo();
             }
         
