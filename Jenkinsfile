@@ -14,7 +14,9 @@ pipeline {
   }
   stage('Build') {
    steps {
-    bat script: 'mvn -B -DskipTests clean install'
+    lock('myResource') {
+       bat script: 'mvn -B -DskipTests clean install'
+    }
    }
   }
   stage('Test') {
