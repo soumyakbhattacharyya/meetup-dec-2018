@@ -1,5 +1,3 @@
-// pending steps: concept of promoting across environment
-// pending steps: concept of manual approval 
 // pending steps: tagging git repository as it reaches an environment 
 // pending steps: building UI project 
 
@@ -37,6 +35,18 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage('run-parallel-branches') {
+		  steps {
+		    parallel(
+		      a: {
+		        echo "run performance test cases"
+		      },
+		      b: {
+		        echo "run acceptance test cases"
+		      }
+		    )
+		  }
+		}
     }
     post {
         always {
