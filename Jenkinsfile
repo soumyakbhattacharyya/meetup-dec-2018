@@ -6,14 +6,13 @@ pipeline {
 
     stages {    
         stage('Pre-Build') {        
-        steps {
+        steps {                 
+                 printBaseInfo();
                  bat script: 'git config --global user.email "bhattacharyya.soumyak@gmail.com"'
 		         bat script: 'git config --global user.name "soumyakbhattacharyya"'
-		         bat script: 'git tag -f -a "demo" -m "demo"'
-		         bat script: 'git push --force origin "demo"'
-                 printBaseInfo();
-            }
-        
+		         bat script: 'git tag -f -a ${env.BUILD_TAG} -m ${env.BUILD_TAG}'
+		         bat script: 'git push --force origin ${env.BUILD_TAG}'
+              }        
         }    
         stage('Build') {
             steps {
@@ -53,8 +52,10 @@ pipeline {
 		}
 		stage('tag-vcs'){
 		 steps {
-		     bat script: 'git config --global user.email "bhattacharyya.soumyak@gmail.com'
-		     bat script: 'git config --global user.name "soumyakbhattacharyya"'
+		     bat script: 'git config --global user.email "bhattacharyya.soumyak@gmail.com"'
+	         bat script: 'git config --global user.name "soumyakbhattacharyya"'
+	         bat script: 'git tag -f -a "demo" -m "demo"'
+	         bat script: 'git push --force origin "demo"'
 		 }
 		}
     }
